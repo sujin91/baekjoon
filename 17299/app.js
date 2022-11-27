@@ -4,9 +4,36 @@ function solution(input) {
   let inputArr = input.slice(1)[0].split(" ");
   let arr = inputArr.map(Number);
   stack.push(0);
+  // count 세는 방법 외우자..
+
+  let count = {};
+
+  arr.forEach((item) => {
+    count[item] = (count[item] || 0) + 1;
+  });
+
+  // function freq(item) {
+  //   let count = 0;
+  //   arr.forEach((i) => {
+  //     if (i === item) count++;
+  //   });
+  //   return count;
+  // }
+
+  // for (let i in arr) {
+  // if (!count[arr[i]]) {
+  //   count[arr[i]] = 1;
+  // } else {
+  //   count[arr[i]]++;
+  // }
+  //   console.log(count);
+  // }
 
   arr.forEach((item, index) => {
-    while (stack.length !== 0 && arr[stack[stack.length - 1]] < item) {
+    while (
+      stack.length !== 0 &&
+      count[arr[stack[stack.length - 1]]] < count[item]
+    ) {
       answer[stack[stack.length - 1]] = item;
       stack.pop();
     }
