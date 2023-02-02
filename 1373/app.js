@@ -1,14 +1,25 @@
 // 2진수가 주어졌을 때, 8진수로 변환하는 프로그램을 작성하시오.
 function solution(input) {
-  let arr = [];
+  // let arr = [];
   let total = 0;
   let answer = [];
-  if (input.length % 3 === 1) {
-    console.log(input[0]);
-  } else if (input.length % 3 === 2) {
-    console.log(input[0] * 2 + input[1]);
+
+  let arr = input.reverse().map(Number);
+
+  for (let i = 0; i < arr.length; i++) {
+    if (i % 3 === 0) {
+      answer.push(total);
+      total = 0;
+      total += arr[i];
+    } else if (i % 3 === 1) {
+      total += arr[i] * 2;
+    } else {
+      total += arr[i] * 4;
+    }
   }
 
+  answer.push(total);
+  console.log(answer.splice(1).reverse().join(""));
   // while (input.length > 3) {
   //   arr.unshift(input.splice(-3));
   // }
